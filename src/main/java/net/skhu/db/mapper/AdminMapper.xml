@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.db.mapper.AdminMapper">
+    <insert id="insert">
+      insert admin (id,name,password,email,phone,department_id, sex)
+      values (#{id}, #{name}, #{password}, #{email}, #{phone}, #{department_id}, #{sex})
+    </insert>
+
+    <update id="update">
+        update admin set
+        name = #{name} ,
+        password = #{password} ,
+        email = #{email} ,
+        phone = #{phone} ,
+        department_id = #{department_id} ,
+        sex = #{sex}
+        where id = #{id}
+    </update>
+
+</mapper>

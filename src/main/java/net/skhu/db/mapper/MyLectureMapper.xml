@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="net.skhu.db.mapper.MyLectureMapper">
+    <insert id="insert">
+        insert mylecture (lecture_year, lecture_semester,lecture_id, lecture_split, title, detailType, credit, grade, student_id)
+        values (#{lecture_year}, #{lecture_semester}, #{lecture_id}, #{lecture_split}, #{title}, #{detailType}, #{credit}, #{grade}, #{student_id})
+    </insert>
+
+    <select id="findAll" resultType="MyLecture">
+        select * from mylecture
+    </select>
+
+    <select id="findSearch" resultType="MyLecture">
+        select * from mylecture
+        <where>
+            <if test="count == 1">
+                lecture_year like concat(#{search},'%')
+            </if>
+            <if test="count == 2">
+                lecture_semester like concat(#{search},'%')
+            </if>
+            <if test="count == 3">
+                lecture_id like concat(#{search}, '%')
+            </if>
+            <if test="count == 4">
+                title like concat(#{search}, '%')
+            </if>
+            <if test="count == 5">
+                detailType like concat(#{search} ,'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>
